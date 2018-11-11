@@ -1,48 +1,56 @@
-import React from "react";
-import { Container, Thumbnail, Content, Text } from "native-base";
+import React, { Component } from "react";
+import { AsyncStorage } from "react-native";
+import {
+  Container,
+  Content,
+  List,
+  ListItem,
+  Text,
+  Thumbnail
+} from "native-base";
 import { Grid, Row } from "react-native-easy-grid";
 import { SafeAreaView, DrawerItems } from "react-navigation";
 
 import styles from "./styles";
 
-const Drawer = props => (
-  <Container>
-    <SafeAreaView
-      style={styles.container}
-      forceInset={{ top: "always", horizontal: "never" }}
-    >
-      <Grid>
-        <Row size={30} style={styles.userContent}>
-          <Content style={styles.content}>
-            <Thumbnail source={require("../../images/animal.png")} />
-            <Text style={styles.primaryText}>Jonathan F. Silva</Text>
-            <Text style={styles.secondaryText}>jonathansilva259@gmail.com</Text>
-          </Content>
-        </Row>
-        <Row size={70}>
-          <Content>
-            <DrawerItems {...props} />
-          </Content>
-        </Row>
-      </Grid>
-    </SafeAreaView>
-  </Container>
-);
+export default class Drawer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      user: {}
+    };
+  }
 
-export default Drawer;
+  async componentDidMount() {
+    const user = JSON.parse(await AsyncStorage.getItem("@ama:user"));
+    console.log(user);
+    this.setState({ user });
+  }
 
-/* <View style={styles.menuHeader}>
-
-  {console.log(this.props)}
-
-  <Image
-    style={styles.userImage}
-    source={{ uri: 'https://avatars2.githubusercontent.com/u/22511089?s=400&u=32fc3de97400f94aaa22c5825e145843d1dfde0b&v=4' }}
-  />
-
-  <View style={styles.userInfo}>
-    <Text style={styles.userName}>{'Jonathan Felipe da Silva'}</Text>
-    <Text style={styles.userEmail}>{'jonathansilva259@gmail.com'}</Text>
-  </View>
-
-</View> */
+  render() {
+    const { user } = this.state;
+    return (
+      <Container>
+        <SafeAreaView
+          style={styles.container}
+          forceInset={{ top: "always", horizontal: "never" }}
+        >
+          <Grid>
+            <Row size={30} style={styles.userContent}>
+              <Content style={styles.content}>
+                <Thumbnail source={{ uri: user.avatar }} />
+                <Text style={styles.primaryText}>{user.name}</Text>
+                <Text style={styles.secondaryText}>{user.email}</Text>
+              </Content>
+            </Row>
+            <Row size={70}>
+              <Content>
+                <DrawerItems {...this.props} />
+              </Content>
+            </Row>
+          </Grid>
+        </SafeAreaView>
+      </Container>
+    );
+  }
+}

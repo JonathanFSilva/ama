@@ -20,7 +20,24 @@ const styles = StyleSheet.create({
   },
   content: {
     elevation: -1,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    backgroundColor: colors.light
+  },
+  actionButtonIconTextContainer: {
+    height: "auto",
     backgroundColor: colors.lighter
+  },
+  actionButtonIconText: {
+    fontSize: 18,
+    fontWeight: "400"
+  },
+  actionButtonIcon: {
+    color: colors.white
+  },
+  btn: {
+    color: colors.white,
+    backgroundColor: colors.secondary
   }
 });
 

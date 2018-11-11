@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
+import colors from "../../styles/colors";
 
 const styles = StyleSheet.create({
   container: {
@@ -6,29 +7,37 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingVertical: 10,
-    backgroundColor: "#F5F5F5"
+    backgroundColor: colors.primary
   },
   logo: {
-    width: 240,
-    height: 240,
+    width: 220,
+    height: 220,
     alignSelf: "center"
   },
   item: {
-    marginTop: 20,
+    marginTop: 10,
     alignSelf: "center",
+    borderColor: "transparent"
+  },
+  lastItem: {
+    marginTop: 10,
+    marginBottom: 0,
+    alignSelf: "center",
+    justifyContent: "flex-end",
     borderColor: "transparent"
   },
   input: {
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 5,
-    backgroundColor: "#FFFFFF",
+    color: colors.dark,
+    backgroundColor: colors.white,
     alignSelf: "stretch",
     marginHorizontal: 20,
     fontSize: 16
   },
   buttonText: {
-    color: "#FFFFFF",
+    color: colors.white,
     fontWeight: "bold",
     fontSize: 16,
     textAlign: "center"
@@ -36,8 +45,27 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 5,
     alignSelf: "stretch",
+    marginVertical: 15,
     marginHorizontal: 20,
-    backgroundColor: "#FC6663"
+    backgroundColor: colors.secondary
+  },
+  socialButtons: {
+    alignSelf: "stretch",
+    marginVertical: 15,
+    marginHorizontal: 20
+  },
+  forgetPasswordText: {
+    color: colors.dark
+  },
+  clickHereText: {
+    color: colors.black,
+    fontWeight: "bold"
+  },
+  text: {
+    textAlign: "center",
+    textAlignVertical: "center",
+    fontSize: 16,
+    color: colors.dark
   }
 });
 
